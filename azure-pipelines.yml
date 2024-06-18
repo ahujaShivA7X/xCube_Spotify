@@ -1,0 +1,23 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: Maven@3
+    inputs:
+      mavenPomFile: 'pom.xml'
+      goals: 'clean test'
+      options: '-DskipTests=false'
+    displayName: 'Run tests'
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      testRunTitle: 'Appium Cucumber Test Results'
+    displayName: 'Publish Test Results'
+
+  - script: |
+      curl -X POST -H 'Content-type: application/json' --data '{"text":"Build completed!"}' $(SLACK_WEBHOOK_URL)
+    displayName: 'Send notification to Slack'
