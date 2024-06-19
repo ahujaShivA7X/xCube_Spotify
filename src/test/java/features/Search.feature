@@ -1,9 +1,14 @@
-Feature: Search songs in spotify
+Feature: Test Search functionality on Spotify
 
-  Scenario: Search in Spotify
-    Given I start the Appium server and emulator
-    And I am on the Spotify login page
-    And I enter username "offo.moti368@gmail.com" and password "Abcd!23456"
-    And I click the login button
-    And I go to the search page and search for "Beatles"
-    Then I should see search results
+Scenario Outline: Login with valid credentials
+Given I am on the Spotify login page
+When I click the login button
+And I verify the username and password label texts
+And I enter username "<UserName>" and password "<Password>"
+And I click the login button
+Then I should see the home page
+
+
+  Examples:
+    | UserName               | Password   |
+    | offo.moti368@gmail.com | Abcd!23456 |

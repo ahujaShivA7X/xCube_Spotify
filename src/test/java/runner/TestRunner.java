@@ -11,18 +11,19 @@ import utils.ExtentReportsManager;
 @CucumberOptions(
         features = "src/test/java/features",
         glue = {"stepDefinitions"},
+        tags = "@Login",
         plugin = {"pretty", "html:target/cucumber-reports"},
         monochrome = true
 )
 public class TestRunner {
 
     @BeforeClass
-    public void setup() {
+    public static void setup() {
         ExtentReportsManager.createInstance("test-output/extent.html");
     }
 
     @AfterClass
-    public void teardown() {
+    public static void teardown() {
         ExtentReportsManager.flush();
     }
 }

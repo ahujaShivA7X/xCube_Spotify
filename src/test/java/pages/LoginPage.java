@@ -97,13 +97,14 @@ public class LoginPage extends BasePage {
             return false;
         }
     }
+}
 
-    public boolean isSelectMusicButtonVisible() {
+ /*   public boolean isSelectMusicButtonVisible() {
         try {
             WebDriverWait wait = new WebDriverWait(driver, 10);
-            return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.Button[@content-desc='Select Music']")))
+            return wait.until(ExpectedConditions.visibilityOf(By.xpath("//android.widget.Button[@content-desc='Select Music']")))
         } catch (org.openqa.selenium.TimeoutException e) {
             return false;
         }
     }
-}
+}*/
