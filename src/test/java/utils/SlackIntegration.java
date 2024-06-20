@@ -5,17 +5,31 @@ import com.slack.api.webhook.Payload;
 import com.slack.api.webhook.WebhookResponse;
 import config.Config;
 
-public class SlackIntegration {
-    private static final String WEBHOOK_URL = Config.get("slack.webhook.url");
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
-    public static void sendMessage(String message) {
+public class SlackIntegration {
+    public static void sendNotification(String message) {
         try {
-            Payload payload = Payload.builder().text(message).build();
-            WebhookResponse response = Slack.getInstance().send(WEBHOOK_URL, payload);
-            System.out.println("Slack response: " + response);
+            String payload = "{\"text\":\"" + message + "\"}";
+            URL url = new URL("https://hooks.slack.com/services/your/slack/webhook/url");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoOutput(true);
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+
+            OutputStream os = connection.getOutputStream();
+            os.write(payload.getBytes());
+            os.flush();
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode != 200) {
+                throw new RuntimeException("Failed : HTTP error code : " + responseCode);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 }
-

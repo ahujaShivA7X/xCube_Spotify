@@ -13,21 +13,16 @@ import java.util.Date;
 
 public class ScreenshotUtils {
 
-    private final AppiumDriver<MobileElement> driver;
+    private AppiumDriver driver;
 
-    public ScreenshotUtils(AppiumDriver<MobileElement> driver) {
+    public ScreenshotUtils(AppiumDriver driver) {
         this.driver = driver;
     }
 
-    public void takeScreenshot(String testName) {
+    public void takeScreenshot(String fileName) {
         File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-        String screenshotName = testName + "_" + timestamp + ".png";
-        File destFile = new File("screenshots/" + screenshotName);
-
         try {
-            FileUtils.copyFile(srcFile, destFile);
-            System.out.println("Screenshot saved: " + destFile.getAbsolutePath());
+            FileUtils.copyFile(srcFile, new File("screenshots/" + fileName + ".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -2,8 +2,11 @@ package drivers;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
+import io.appium.java_client.service.local.AppiumServiceBuilder;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -11,6 +14,8 @@ import java.net.URL;
 import java.util.Properties;
 
 public class CapabilitiesManager {
+
+    private static AppiumDriverLocalService appiumService;
     public static AndroidDriver<MobileElement> getCapabilities() throws MalformedURLException {
         Properties properties = new Properties();
         try {
@@ -20,6 +25,8 @@ public class CapabilitiesManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //taskkill /F /IM node.exe
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", properties.getProperty("platformName"));
