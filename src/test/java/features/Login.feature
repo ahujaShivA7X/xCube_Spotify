@@ -1,6 +1,6 @@
 Feature: Login to Spotify App
 
-  @Login
+  @Sanity
   Scenario: Check Login Screen Buttons
     Given I am on the Spotify login page
     Then I should see the "Sign up free" button
@@ -8,7 +8,7 @@ Feature: Login to Spotify App
     And I should see the "Continue with Google" button
     And I should see the "Continue with Facebook" button
 
-  @Login
+  @Regression
   Scenario Outline: Login with valid credentials
     Given I am on the Spotify login page
     When I click the login button

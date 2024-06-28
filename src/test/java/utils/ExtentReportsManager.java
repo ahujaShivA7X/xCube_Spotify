@@ -20,9 +20,9 @@ public class ExtentReportsManager {
     public static void createInstance(String fileName) {
         ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(fileName);
         htmlReporter.config().setTheme(Theme.DARK);
-        htmlReporter.config().setDocumentTitle("Test Automation Report");
+        htmlReporter.config().setDocumentTitle("Spotify Appium Report");
         htmlReporter.config().setEncoding("utf-8");
-        htmlReporter.config().setReportName("Test Automation Report");
+        htmlReporter.config().setReportName("Spotify Mobile Automation Report");
 
         extent = new ExtentReports();
         extent.attachReporter(htmlReporter);

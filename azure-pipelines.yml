@@ -1,5 +1,5 @@
 trigger:
-  - main
+  - develop
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -15,7 +15,7 @@ steps:
   - task: PublishTestResults@2
     inputs:
       testResultsFiles: '**/surefire-reports/TEST-*.xml'
-      testRunTitle: 'Appium Cucumber Test Results'
+      testRunTitle: 'Spotify Appium Test Results'
     displayName: 'Publish Test Results'
 
   - script: |

@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import com.aventstack.extentreports.ExtentTest;
 import drivers.DriverFactory;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -11,6 +12,7 @@ import org.junit.Assert;
 import pages.LoginPage;
 
 import utils.AppiumServerManager;
+import utils.ExtentReportsManager;
 import utils.ScreenshotUtils;
 
 import java.io.IOException;
@@ -29,8 +31,9 @@ public class LoginSteps {
 
     @Given("I am on the Spotify login page")
     public void i_am_on_the_Spotify_login_page() throws IOException, InterruptedException {
-        AppiumServerManager.startServer();
+       // AppiumServerManager.startServer();
         loginPage.isFacebookButtonPresent();
+        //ExtentTest test = ExtentReportsManager.createTest("Login Test");
     }
 
     @And("I verify the username and password label texts")
